@@ -1,0 +1,81 @@
+:root {
+	--index: calc(1vw + 1vh);
+
+	/* palette */
+	--color-main: #1c1c1d;
+	--color-secondary: #b3b3b3;
+
+	--color-font-main: #fff;
+	--color-font-secondary: #b1b1b1;
+	--color-contrast-main: #0f0f0f;
+	--color-contrast-secondary: #464646;
+	--color-font-contrast-main: #000;
+	--color-font-contrast-secondary: #222;
+	/* palette */
+
+	/* font-families */
+	--font-family-main: monospace /*mainFamily*/;
+	--font-family-heading: regularFamily;
+	/* font-families */
+
+	/* font-sizes */
+	--font-size-xs: calc(var(--index) * 0.3);
+	--font-size-s: calc(var(--index) * 0.5);
+	--font-size-sm: calc(var(--index) * 0.8);
+	--font-size-m: calc(var(--index) * 1);
+	--font-size-ml: calc(var(--index) * 1.2);
+	--font-size-l: calc(var(--index) * 1.5);
+	--font-size-xl: calc(var(--index) * 1.8);
+	/* font-sizes */
+}
+
+/* SCROLL */
+*::-webkit-scrollbar {
+	width: 8px; /* ширина scrollbar */
+}
+*::-webkit-scrollbar-track {
+	background-color: var(--color-main); /* цвет плашки */
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--color-secondary); /* цвет дорожки */
+	border-radius: 8px; /* закругления плашки */
+}
+
+* {
+	scrollbar-width: 8px; /* ширина дорожки */
+	scrollbar-color: var(--color-secondary) var(--color-main); /* цвет дорожки, цвет плажки (через пробел) */
+}
+/* SCROLL */
+
+/* COLOR OF SELECTION */
+::selection {
+	background: var(--color-font-main);
+	color: var(--color-font-contrast-main);
+	text-shadow: none;
+}
+
+::-moz-selection {
+	background: var(--color-font-main);
+	color: var(--color-font-contrast-main);
+	text-shadow: none;
+}
+/* COLOR OF SELECTION */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+/* FONT FAMILIES */
+@font-face {
+	font-family: mainFamily;
+	src: monospace;
+}
+@font-face {
+	font-family: secondary;
+	src: url();
+}
+
+/* FONT FAMILIES */

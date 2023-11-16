@@ -1,0 +1,8 @@
+.cell {
+	height: 100%;
+	width: 100%;
+	color: var(--color-font-main);
+	font-family: var(--font-family-main);
+	display: flex;
+	align-items: center;
+}

@@ -1,0 +1,6 @@
+.table-body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: calc(var(--index) * 1);
+}
