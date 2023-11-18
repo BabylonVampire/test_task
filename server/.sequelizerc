@@ -1,0 +1,17 @@
+const path = require('path');
+
+module.exports = {
+	config: path.resolve('dbConfig.js'),
+	'models-path': path.resolve('models'),
+	'seeders-path': path.resolve('seeders'),
+	'migrations-path': path.resolve('migrations'),
+};
+// import * as path from 'path';
+
+// const config = {
+// 	config: path.resolve('dbConfig.js'),
+// 	'models-path': path.resolve('models'),
+// 	'seeders-path': path.resolve('seeders'),
+// 	'migrations-path': path.resolve('migrations'),
+// };
+// export default config;

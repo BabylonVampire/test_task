@@ -7,7 +7,7 @@ const universityController = new UniversityController();
 
 universityRouter.post(
 	'/',
-	[body('name').notEmpty().withMessage('Введите имя').trim().escape()],
+	[body('name').notEmpty().withMessage('Введите название').trim().escape()],
 	universityController.createUniversity
 );
 

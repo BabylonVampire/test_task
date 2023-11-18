@@ -36,6 +36,7 @@ userRouter.put(
 			.withMessage('Введите корректный email')
 			.normalizeEmail(),
 		body('name').notEmpty().withMessage('Введите имя').trim().escape(),
+		body('universityId').optional().isUUID(),
 	],
 	userController.updateUserById
 );

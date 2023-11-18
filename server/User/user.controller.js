@@ -10,8 +10,12 @@ export class UserController {
 			if (!errors.isEmpty()) {
 				return res.status(400).json({ message: errors.array()[0].msg });
 			}
-			const { email, name } = req.body;
-			const user = await userService.createUser(email, name);
+			const { email, name, universityId } = req.body;
+			const user = await userService.createUser(
+				email,
+				name,
+				universityId
+			);
 			res.json(user);
 		} catch (error) {
 			next(error);
@@ -30,8 +34,51 @@ export class UserController {
 
 	async getAllUsers(req, res, next) {
 		try {
-			const users = await userService.getAllUsers();
-			res.json(users);
+			let limit = parseInt(req.query.limit);
+			let offset = parseInt(req.query.offset);
+			let sort = req.query.sort;
+
+			if (isNaN(limit) || limit < 1) limit = 10;
+			if (limit > 50) limit = 50;
+			if (isNaN(offset) || offset < 0) offset = 0;
+			if (sort) {
+				const match = sort.match(/^(-?)(\w+)$/);
+				if (match) {
+					const sign = match[1];
+					const field = match[2];
+					const validFields = ['email', 'name'];
+					if (validFields.includes(field)) {
+						const direction = sign === '-' ? 'DESC' : 'ASC';
+						sort = [[field, direction]];
+					} else {
+						throw new Error('Неверное имя поля для сортировки');
+					}
+				} else {
+					throw new Error('Неверный формат параметра сортировки');
+				}
+			} else {
+				sort = [['name', 'ASC']];
+			}
+
+			const { users, totalCount } = await userService.getAllUsers(
+				limit,
+				offset,
+				sort
+			);
+
+			const totalPages = Math.ceil(totalCount / limit);
+			const page = Math.floor(offset / limit) + 1;
+			const size = users.length;
+
+			res.json({
+				pagination: {
+					totalPages,
+					totalCount,
+					page,
+					size,
+				},
+				data: users,
+			});
 		} catch (error) {
 			next(error);
 		}
@@ -40,8 +87,13 @@ export class UserController {
 	async updateUserById(req, res, next) {
 		try {
 			const { id } = req.params;
-			const { email, name } = req.body;
-			const user = await userService.updateUserById(id, email, name);
+			const { email, name, universityId } = req.body;
+			const user = await userService.updateUserById(
+				id,
+				email,
+				name,
+				universityId
+			);
 			res.json(user);
 		} catch (error) {
 			next(error);

@@ -7,6 +7,7 @@ class User extends Model {
 	id;
 	email;
 	name;
+	universityId;
 }
 
 User.init(
@@ -16,6 +17,7 @@ User.init(
 		name: { type: DataTypes.STRING, allowNull: false },
 		universityId: {
 			type: DataTypes.UUID,
+			allowNull: true,
 			references: { model: University, key: 'id' },
 		},
 	},
