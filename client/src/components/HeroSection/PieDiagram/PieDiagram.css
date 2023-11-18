@@ -1,0 +1,79 @@
+.pie-diagram {
+	position: relative;
+	height: 90%;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+	transition: 0.3s;
+}
+
+.pie-diagram__box {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.3s;
+}
+
+.pie-diagram__inner-box {
+	width: 80%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	position: relative;
+}
+
+.pie-diagram__description-box {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	opacity: 0;
+	transition: 0.3s;
+	gap: 1lh;
+}
+
+.pie-diagram__description-row {
+	display: flex;
+	flex-direction: row;
+	gap: 1lh;
+	align-items: center;
+}
+
+.pie-diagram__description-text {
+	font-size: var(--font-size-l);
+	color: var(--color-font-main);
+	font-family: var(--font-family-main);
+}
+
+.pie-diagram__description-point {
+	height: 1em;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+}
+
+.pie-diagram__box:hover .pie-diagram__description-box {
+	opacity: 1;
+}
+
+.pie-diagram__box:hover .pie-diagram {
+	transform: translateX(-6em) rotate(-10deg);
+}
+
+@media (max-width: 1200px) {
+	.pie-diagram__inner-box {
+		flex-direction: column;
+	}
+	.pie-diagram__box:hover .pie-diagram {
+		transform: rotate(-10deg);
+	}
+	.pie-diagram__description-box {
+		position: relative;
+	}
+}
