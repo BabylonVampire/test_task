@@ -1,0 +1,35 @@
+.table-card {
+	padding: 30px;
+	margin: 0 auto;
+	width: 90%;
+	height: 100%;
+	border-radius: 20px;
+	background-color: var(--color-contrast-main);
+	transition: 0.3s;
+}
+
+.table-card__inner-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.table-card__icon-wrapper {
+	color: rgb(215, 189, 102);
+	font-size: calc(var(--index) * 5);
+	line-height: 0;
+}
+
+.table-card__field {
+	word-break: break-all;
+	color: var(--color-font-main);
+	font-size: var(--font-size-sm);
+	font-family: var(--font-family-main);
+}
+
+.table-card:hover {
+	filter: brightness(1.5);
+	scale: 1.05;
+}

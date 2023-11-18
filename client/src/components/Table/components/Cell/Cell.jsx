@@ -1,8 +1,8 @@
 import React from 'react';
 import './Cell.css';
 
-const Cell = ({ value }) => {
-	return <div className="cell">{value}</div>;
+const Cell = ({ children }) => {
+	return <div className="cell">{children}</div>;
 };
 
 export default Cell;

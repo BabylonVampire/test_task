@@ -2,11 +2,11 @@ import React from 'react';
 import Row from '../Row/Row';
 import './TableBody.css';
 
-const TableBody = ({ config, users }) => {
+const TableBody = ({ config, data }) => {
 	return (
 		<div className="table-body">
-			{users.map((user) => {
-				return <Row key={user.id} user={user} config={config} />;
+			{data.map((row) => {
+				return <Row key={row.id} item={row} config={config} />;
 			})}
 		</div>
 	);
