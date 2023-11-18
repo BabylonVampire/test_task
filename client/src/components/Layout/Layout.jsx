@@ -1,5 +1,5 @@
 import { memo } from 'react';
-// import Footer from './components/Footer/Footer';
+import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import './Layout.css';
 
@@ -9,7 +9,7 @@ const Layout = memo(({ children }) => {
 			<NavBar />
 			<div className="layout__layout-box">
 				{children}
-				{/* <Footer links={[]} contacts={[]} /> */}
+				<Footer />
 			</div>
 		</div>
 	);

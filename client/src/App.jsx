@@ -1,57 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroSection from './components/HeroSection/HeroSection';
 import Layout from './components/Layout/Layout';
 import Table from './components/Table/Table';
+import { useUsers } from './hooks/';
 
 const App = () => {
+	const [userFetchParams, setUserFetchParams] = useState({
+		offset: 0,
+		limit: 10,
+		sort: 'name',
+		filter: [],
+	});
+	const { users, pagination, refetch } = useUsers({
+		limit: userFetchParams.limit || 10,
+		offset: userFetchParams.offset || 0,
+		sort: userFetchParams.sort || 'name',
+		filter: userFetchParams.filter || [],
+	});
+
+	useEffect(() => {
+		refetch();
+	}, [userFetchParams]);
+
 	return (
 		<div className="app">
 			<Layout>
 				<HeroSection />
 				<Table
+					setFetchParams={setUserFetchParams}
+					pagination={pagination}
+					fetchParams={userFetchParams}
 					config={{
 						columns: [
 							{
 								key: 'name',
-								label: 'Пользователи',
+								label: 'Имя',
+								sortable: true,
 							},
 							{
 								key: 'email',
 								label: 'E-Mail',
+								sortable: true,
 							},
 							{
-								key: 'phone',
-								label: 'Телефон',
-							},
-							{
-								key: 'dick',
-								label: 'хуй',
+								key: 'universityName',
+								label: 'ВУЗ',
 							},
 						],
 					}}
-					users={[
-						{
-							id: 1,
-							name: 'Никита',
-							phone: '+0000',
-							email: 'text@email.cum',
-							dick: 20,
-						},
-						{
-							id: 2,
-							name: 'Артем',
-							phone: '+0000',
-							email: 'text@email.cum',
-							dick: 20,
-						},
-						{
-							id: 3,
-							name: 'Стец',
-							phone: '+0000',
-							email: 'text@email.cum',
-							dick: -20,
-						},
-					]}
+					data={users}
 				/>
 			</Layout>
 		</div>
