@@ -1,6 +1,10 @@
 import { memo } from 'react';
 import './Footer.css';
 
+/**
+ * Компонент футера.
+ * @returns {JSX.Element} - компонент футера.
+ */
 const Footer = memo(() => {
 	const date = new Date().getFullYear();
 	return (

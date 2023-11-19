@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import './Table.css';
-import TableBody from './components/TableBody/TableBody';
-import TableHead from './components/TableHead/TableHead';
-import TableFooter from './components/TableFooter/TableFooter';
 import CardGrid from './components/CardGrid/CardGrid';
-import { BiIdCard, BiTable } from 'react-icons/bi';
+import TableBody from './components/TableBody/TableBody';
+import TableFooter from './components/TableFooter/TableFooter';
+import TableHead from './components/TableHead/TableHead';
 
+/**
+ * Компонент, который отображает данные в виде таблицы или карточек.
+ * @param {Array} data - массив объектов, содержащих данные для отображения.
+ * @param {Object} config - объект, содержащий настройки для отображения данных.
+ * @param {Object} pagination - объект, содержащий информацию о пагинации.
+ * @param {Object} fetchParams - объект, содержащий параметры для запроса данных с сервера.
+ * @param {Function} setFetchParams - функция, которая устанавливает новые параметры для запроса данных с сервера.
+ * @returns {JSX.Element} - элемент, который отображает данные в виде таблицы или карточек.
+ */
 const Table = ({ data, config, pagination, fetchParams, setFetchParams }) => {
-	const displayVariants = [
-		{ key: 'table', icon: <BiTable />, centralizeHead: false },
-		{ key: 'cards', icon: <BiIdCard />, centralizeHead: true },
-	];
-	const [displayVariant, setDisplayVariant] = useState(displayVariants[0]);
+	const [displayVariant, setDisplayVariant] = useState(
+		config.displayVariants[0]
+	);
 	const renderDisplayVariant = (displayVariant) => {
 		switch (displayVariant) {
 			case 'cards':
@@ -27,9 +33,7 @@ const Table = ({ data, config, pagination, fetchParams, setFetchParams }) => {
 		<div className="table">
 			<TableHead
 				config={config}
-				fetchParams={fetchParams}
 				setFetchParams={setFetchParams}
-				displayVariants={displayVariants}
 				setDisplayVariant={setDisplayVariant}
 				displayVariant={displayVariant}
 			/>

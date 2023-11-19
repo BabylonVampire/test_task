@@ -1,0 +1,34 @@
+.header {
+	z-index: 10;
+	top: 0;
+	left: 0;
+	position: fixed;
+	height: 70px;
+	width: 100%;
+	background-color: var(--color-contrast-secondary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header__box {
+	display: flex;
+	flex-direction: row;
+}
+
+.header__link {
+	color: var(--color-font-secondary);
+	font-size: var(--font-size-l);
+	width: 50px;
+	aspect-ratio: 1/1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.header__link:hover {
+	scale: 1.05;
+	color: var(--color-font-main);
+}

@@ -5,4 +5,5 @@
 	font-family: var(--font-family-main);
 	display: flex;
 	align-items: center;
+	word-break: break-all;
 }

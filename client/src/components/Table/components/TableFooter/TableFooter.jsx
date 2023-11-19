@@ -2,6 +2,13 @@ import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import './TableFooter.css';
 
+/**
+ * Компонент, который отображает низ таблицы с информацией о пагинации и кнопками для перехода по страницам.
+ * @param {Object} pagination - объект, содержащий информацию о пагинации.
+ * @param {Object} fetchParams - объект, содержащий параметры для запроса данных с сервера.
+ * @param {Function} setFetchParams - функция, которая устанавливает новые параметры для запроса данных с сервера.
+ * @returns {JSX.Element} - Компонент, который отображает низ таблицы.
+ */
 const TableFooter = ({ pagination, fetchParams, setFetchParams }) => {
 	const forwardButton = () => {
 		setFetchParams((prev) => ({

@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection/HeroSection';
 import Layout from './components/Layout/Layout';
 import Table from './components/Table/Table';
 import { useUsers } from './hooks/';
+import { BiIdCard, BiTable } from 'react-icons/bi';
 
 const App = () => {
 	const [userFetchParams, setUserFetchParams] = useState({
@@ -17,6 +18,36 @@ const App = () => {
 		sort: userFetchParams.sort || 'name',
 		filter: userFetchParams.filter || [],
 	});
+	const tableConfig = {
+		columns: [
+			{
+				key: 'name',
+				label: 'Имя',
+				sortable: true,
+			},
+			{
+				key: 'email',
+				label: 'E-Mail',
+				sortable: true,
+			},
+			{
+				key: 'universityName',
+				label: 'ВУЗ',
+			},
+		],
+		displayVariants: [
+			{
+				key: 'table',
+				icon: <BiTable />,
+				centralizeHead: false,
+			},
+			{
+				key: 'cards',
+				icon: <BiIdCard />,
+				centralizeHead: true,
+			},
+		],
+	};
 
 	useEffect(() => {
 		refetch();
@@ -30,24 +61,7 @@ const App = () => {
 					setFetchParams={setUserFetchParams}
 					pagination={pagination}
 					fetchParams={userFetchParams}
-					config={{
-						columns: [
-							{
-								key: 'name',
-								label: 'Имя',
-								sortable: true,
-							},
-							{
-								key: 'email',
-								label: 'E-Mail',
-								sortable: true,
-							},
-							{
-								key: 'universityName',
-								label: 'ВУЗ',
-							},
-						],
-					}}
+					config={tableConfig}
 					data={users}
 				/>
 			</Layout>

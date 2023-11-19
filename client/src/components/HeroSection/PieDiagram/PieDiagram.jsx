@@ -2,6 +2,12 @@ import React from 'react';
 import { generatePie } from './utils/generatePie';
 import './PieDiagram.css';
 
+/**
+ * Компонент круговой диаграммы.
+ * @param {number} totalCount - общее количество элементов, по которым отображается статистика.
+ * @param {Array} parts - массив объектов, содержащих информацию о каждой секции.
+ * @returns {JSX.Element} - компонент круговой диаграммы.
+ */
 const PieDiagram = ({ totalCount, parts }) => {
 	return (
 		<div className="pie-diagram__box">
@@ -18,7 +24,10 @@ const PieDiagram = ({ totalCount, parts }) => {
 				<div className="pie-diagram__description-box">
 					{parts.map((part) => {
 						return (
-							<div className="pie-diagram__description-row">
+							<div
+								className="pie-diagram__description-row"
+								key={parts.indexOf(part)}
+							>
 								<div
 									className="pie-diagram__description-point"
 									style={{ backgroundColor: part.color }}

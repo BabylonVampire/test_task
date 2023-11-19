@@ -1,8 +1,13 @@
 import React from 'react';
+import { FaUser, FaUserGraduate } from 'react-icons/fa';
 import './TableCard.css';
-import { FaUserGraduate, FaUser } from 'react-icons/fa';
-import Cell from '../Cell/Cell';
 
+/**
+ * Компонент карточки с данными.
+ * @param {Object} item - объект, содержащий информацию для отображения.
+ * @param {Object} config - объект, содержащий настройки для отображения данных.
+ * @returns {JSX.Element} - компонент карточки с данными.
+ */
 const TableCard = ({ item, config }) => {
 	return (
 		<div className="table-card">
@@ -12,7 +17,9 @@ const TableCard = ({ item, config }) => {
 				</div>
 				{config.columns.map((col) => {
 					return (
-						<div className="table-card__field">{item[col.key]}</div>
+						<div key={col.key} className="table-card__field">
+							{item[col.key]}
+						</div>
 					);
 				})}
 			</div>

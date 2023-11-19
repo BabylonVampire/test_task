@@ -4,6 +4,10 @@ import { useUsers, useUniversities } from '../../hooks/';
 import './HeroSection.css';
 import PieDiagram from './PieDiagram/PieDiagram';
 
+/**
+ * Компонент главной секции.
+ * @returns {JSX.Element} - компонент главной секции.
+ */
 const HeroSection = () => {
 	const { pagination } = useUsers({});
 	const { universities } = useUniversities();

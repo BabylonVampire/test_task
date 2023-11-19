@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa6';
-
+import React, { useEffect, useState } from 'react';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
 import Cell from '../Cell/Cell';
 import './TableHead.css';
 
+/**
+ * Компонент, который отображает заголовок таблицы с кнопками для выбора вида отображения данных и сортировки по столбцам.
+ * @param {Object} config - объект, содержащий настройки для отображения данных.
+ * @param {Function} setFetchParams - функция, которая устанавливает новые параметры для запроса данных с сервера.
+ * @param {Function} setDisplayVariant - функция, которая устанавливает новый вид отображения данных.
+ * @param {Object} displayVariant - объект, содержащий информацию о текущем виде отображения данных.
+ * @returns {JSX.Element} - элемент, который отображает заголовок таблицы.
+ */
 const TableHead = ({
 	config,
-	fetchParams,
 	setFetchParams,
-	displayVariants,
 	setDisplayVariant,
 	displayVariant,
 }) => {
@@ -30,9 +35,10 @@ const TableHead = ({
 		<div className="table-head">
 			<div className="table-head__inner-box">
 				<div className="table-head__display-variants">
-					{displayVariants.map((variant) => {
+					{config.displayVariants.map((variant) => {
 						return (
 							<button
+								key={variant.key}
 								className={`table-head__display-variant-button${
 									displayVariant.key === variant.key
 										? '__active'
@@ -49,6 +55,7 @@ const TableHead = ({
 					{config.columns.map((col) => {
 						return (
 							<div
+								key={col.key}
 								style={{
 									justifyContent:
 										displayVariant.centralizeHead
@@ -61,7 +68,7 @@ const TableHead = ({
 									setDirection((prev) => !prev);
 								}}
 							>
-								<Cell key={col.key}>{col.label}</Cell>
+								<Cell>{col.label}</Cell>
 								<div
 									className={`table-head__sort-button${
 										col.key === sortedField
