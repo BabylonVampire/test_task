@@ -18,7 +18,7 @@ const HeroSection = () => {
 		if (universityCount < universities.length) {
 			setTimeout(() => {
 				setUniversityCount((prev) => prev + 1);
-			}, 100);
+			}, (2 / universities.length) * 1000 || 0);
 		}
 	}, [universityCount, universities.length]);
 
@@ -26,7 +26,7 @@ const HeroSection = () => {
 		if (userCount < pagination.totalCount) {
 			setTimeout(() => {
 				setUserCount((prev) => prev + 1);
-			}, 0.01);
+			}, (2 / pagination.totalCount) * 1000 || 0);
 		}
 	}, [userCount, JSON.stringify(pagination)]);
 	return (

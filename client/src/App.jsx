@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeroSection from './components/HeroSection/HeroSection';
 import Layout from './components/Layout/Layout';
 import Table from './components/Table/Table';
 import { useUsers } from './hooks/';
-import { BiIdCard, BiTable } from 'react-icons/bi';
 
 const App = () => {
 	const [userFetchParams, setUserFetchParams] = useState({
@@ -38,13 +37,9 @@ const App = () => {
 		displayVariants: [
 			{
 				key: 'table',
-				icon: <BiTable />,
-				centralizeHead: false,
 			},
 			{
 				key: 'cards',
-				icon: <BiIdCard />,
-				centralizeHead: true,
 			},
 		],
 	};

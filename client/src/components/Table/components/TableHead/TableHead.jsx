@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BiIdCard, BiTable } from 'react-icons/bi';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
 import Cell from '../Cell/Cell';
 import './TableHead.css';
@@ -31,6 +32,11 @@ const TableHead = ({
 		changeSelectedSort(sortedField, direction);
 	}, [direction, sortedField]);
 
+	const displayVariantsIcons = {
+		cards: { icon: <BiIdCard />, centralizeHead: true },
+		table: { icon: <BiTable />, centralizeHead: false },
+	};
+
 	return (
 		<div className="table-head">
 			<div className="table-head__inner-box">
@@ -46,7 +52,7 @@ const TableHead = ({
 								}`}
 								onClick={() => setDisplayVariant(variant)}
 							>
-								{variant.icon}
+								{displayVariantsIcons[variant.key].icon}
 							</button>
 						);
 					})}
@@ -57,10 +63,11 @@ const TableHead = ({
 							<div
 								key={col.key}
 								style={{
-									justifyContent:
-										displayVariant.centralizeHead
-											? 'center'
-											: 'normal',
+									justifyContent: displayVariantsIcons[
+										displayVariant.key
+									].centralizeHead
+										? 'center'
+										: 'normal',
 								}}
 								className="table-head__sortable-cell"
 								onClick={() => {

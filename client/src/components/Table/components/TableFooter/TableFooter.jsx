@@ -28,10 +28,12 @@ const TableFooter = ({ pagination, fetchParams, setFetchParams }) => {
 			<div className="table-footer__divider" />
 			<div className="table-footer__inner-box">
 				<div className="table-footer__count">
-					{`${fetchParams.offset + 1}-${Math.min(
-						fetchParams.offset + pagination.size,
-						pagination.totalCount
-					)} из ${pagination.totalCount}`}
+					{`${fetchParams.offset + 1}-${
+						Math.min(
+							fetchParams.offset + pagination.size,
+							pagination.totalCount
+						) || 0
+					} из ${pagination.totalCount || 0}`}
 					<div className="table-footer__button-box">
 						<button
 							className={`table-footer__backward-arrow${
@@ -44,7 +46,8 @@ const TableFooter = ({ pagination, fetchParams, setFetchParams }) => {
 						<button
 							className={`table-footer__forward-arrow${
 								fetchParams.offset + pagination.size >=
-								pagination.totalCount
+									pagination.totalCount ||
+								!pagination.totalCount
 									? '__disabled'
 									: ''
 							}`}
