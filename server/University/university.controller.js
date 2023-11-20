@@ -1,9 +1,18 @@
+/**
+ * Класс, представляющий контроллер для работы с университетами
+ */
 import { validationResult } from 'express-validator';
 import { UniversityService } from './university.service.js';
 
 const universityService = new UniversityService();
 
 export class UniversityController {
+	/**
+	 * Метод, создающий новый университет в базе данных
+	 * @param {object} req - Объект запроса
+	 * @param {object} res - Объект ответа
+	 * @param {function} next - Функция, передающая управление следующему обработчику
+	 */
 	async createUniversity(req, res, next) {
 		try {
 			const errors = validationResult(req);
@@ -18,6 +27,12 @@ export class UniversityController {
 		}
 	}
 
+	/**
+	 * Метод, возвращающий университет по идентификатору
+	 * @param {object} req - Объект запроса
+	 * @param {object} res - Объект ответа
+	 * @param {function} next - Функция, передающая управление следующему обработчику
+	 */
 	async getUniversityById(req, res, next) {
 		try {
 			const { id } = req.params;
@@ -28,6 +43,12 @@ export class UniversityController {
 		}
 	}
 
+	/**
+	 * Метод, возвращающий список всех университетов
+	 * @param {object} req - Объект запроса
+	 * @param {object} res - Объект ответа
+	 * @param {function} next - Функция, передающая управление следующему обработчику
+	 */
 	async getAllUniversities(req, res, next) {
 		try {
 			const universities = await universityService.getAllUniversities();
@@ -37,6 +58,12 @@ export class UniversityController {
 		}
 	}
 
+	/**
+	 * Метод, обновляющий университет по идентификатору
+	 * @param {object} req - Объект запроса
+	 * @param {object} res - Объект ответа
+	 * @param {function} next - Функция, передающая управление следующему обработчику
+	 */
 	async updateUniversityById(req, res, next) {
 		try {
 			const { id } = req.params;
@@ -51,6 +78,12 @@ export class UniversityController {
 		}
 	}
 
+	/**
+	 * Метод, удаляющий университет по идентификатору
+	 * @param {object} req - Объект запроса
+	 * @param {object} res - Объект ответа
+	 * @param {function} next - Функция, передающая управление следующему обработчику
+	 */
 	async deleteUniversityById(req, res, next) {
 		try {
 			const { id } = req.params;

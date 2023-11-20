@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { UniversitiesAPI } from '../api';
-
+/**
+ * Хук, использующийся для получения выбранного университета.
+ * @param {number} id - id университета.
+ * @returns {object} Объект, содержащий массив университетов и функцию для повторного запроса.
+ */
 export function useUniversity(id) {
 	const [university, setUniversity] = useState();
 

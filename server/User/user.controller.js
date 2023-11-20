@@ -3,7 +3,17 @@ import { validationResult } from 'express-validator';
 
 const userService = new UserService();
 
+/**
+ * Класс, представляющий контроллер для пользователей.
+ */
 export class UserController {
+	/**
+	 * Создает нового пользователя в базе данных.
+	 * @async
+	 * @param {Object} req - объект запроса.
+	 * @param {Object} res - объект ответа.
+	 * @param {Function} next - функция перехода к следующему обработчику.
+	 */
 	async createUser(req, res, next) {
 		try {
 			const errors = validationResult(req);
@@ -22,6 +32,13 @@ export class UserController {
 		}
 	}
 
+	/**
+	 * Получает пользователя по идентификатору.
+	 * @async
+	 * @param {Object} req - объект запроса.
+	 * @param {Object} res - объект ответа.
+	 * @param {Function} next - функция перехода к следующему обработчику.
+	 */
 	async getUserById(req, res, next) {
 		try {
 			const { id } = req.params;
@@ -32,6 +49,13 @@ export class UserController {
 		}
 	}
 
+	/**
+	 * Получает всех пользователей из базы данных с пагинацией и сортировкой.
+	 * @async
+	 * @param {Object} req - объект запроса.
+	 * @param {Object} res - объект ответа.
+	 * @param {Function} next - функция перехода к следующему обработчику.
+	 */
 	async getAllUsers(req, res, next) {
 		try {
 			let limit = parseInt(req.query.limit);
@@ -84,6 +108,13 @@ export class UserController {
 		}
 	}
 
+	/**
+	 * Обновляет пользователя по идентификатору.
+	 * @async
+	 * @param {Object} req - объект запроса.
+	 * @param {Object} res - объект ответа.
+	 * @param {Function} next - функция перехода к следующему обработчику.
+	 */
 	async updateUserById(req, res, next) {
 		try {
 			const { id } = req.params;
@@ -100,6 +131,13 @@ export class UserController {
 		}
 	}
 
+	/**
+	 * Удаляет пользователя по идентификатору.
+	 * @async
+	 * @param {Object} req - объект запроса.
+	 * @param {Object} res - объект ответа.
+	 * @param {Function} next - функция перехода к следующему обработчику.
+	 */
 	async deleteUserById(req, res, next) {
 		try {
 			const { id } = req.params;

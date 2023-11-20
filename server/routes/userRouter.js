@@ -5,7 +5,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 const checkRole = require('../middleware/checkRoleMiddleware');
 
 router.post('/registration', userController.registration);
-router.post('/ogin', userController.login);
+router.post('/login', userController.login);
 router.get('/auth', authMiddleware, userController.checkAuth);
 router.get('/:id', authMiddleware, userController.getUser);
 
