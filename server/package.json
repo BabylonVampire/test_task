@@ -5,6 +5,7 @@
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
+		"test": "jest",
 		"start:dev": "nodemon main.js",
 		"start:prod": "node main.js"
 	},
@@ -23,7 +24,15 @@
 		"uuid": "^9.0.1"
 	},
 	"devDependencies": {
+		"jest": "^29.7.0",
 		"nodemon": "^3.0.1",
-		"sequelize-cli": "^6.6.2"
+		"sequelize-cli": "^6.6.2",
+		"supertest": "^6.3.3"
+	},
+	"jest": {
+		"testEnvironment": "node",
+		"coveragePathIgnorePatterns": [
+			"/node_modules/"
+		]
 	}
 }

@@ -24,7 +24,6 @@ export function useUsers({ limit, offset, sort }) {
 				sort,
 			});
 			// Обновляем состояние с полученными данными
-			console.log(response.data);
 			setUsers(
 				response.data.map((user) => ({
 					...user,
