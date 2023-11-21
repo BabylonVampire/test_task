@@ -6,11 +6,12 @@ import './PieDiagram.css';
  * Компонент круговой диаграммы.
  * @param {number} totalCount - общее количество элементов, по которым отображается статистика.
  * @param {Array} parts - массив объектов, содержащих информацию о каждой секции.
+ * @param {string} height - высота диаграммы. По умолчанию 100%.
  * @returns {JSX.Element} - компонент круговой диаграммы.
  */
-const PieDiagram = ({ totalCount, parts }) => {
+const PieDiagram = ({ totalCount, parts, height = '100%' }) => {
 	return (
-		<div className="pie-diagram__box">
+		<div className="pie-diagram__box" style={{ height: height }}>
 			<div className="pie-diagram__inner-box">
 				<div
 					className="pie-diagram"
