@@ -92,6 +92,14 @@
 	font-size: var(--font-size-xl);
 }
 
+.card__big-title {
+	width: 90%;
+	height: 95%;
+	color: var(--color-font-main);
+	font-size: 9em;
+	font-family: var(--font-family-heading);
+}
+
 .card:hover {
 	scale: 1.01;
 }
@@ -119,5 +127,9 @@
 
 	.hero-section__card4 {
 		grid-area: 1 / 2 / 2 / 3;
+	}
+
+	.card__big-title {
+		font-size: 7em;
 	}
 }

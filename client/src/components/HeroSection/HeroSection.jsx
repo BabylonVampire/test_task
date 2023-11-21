@@ -33,7 +33,13 @@ const HeroSection = () => {
 		<section className="hero-section" id="home-page">
 			<div className="hero-section__container">
 				<div className="hero-section__cards-grid">
-					<div className="card hero-section__card1"></div>
+					<div className="card hero-section__card1">
+						<div className="card__big-title">
+							ВУЗ
+							<br />
+							СТАТ
+						</div>
+					</div>
 					<div className="card hero-section__card2">
 						<PieDiagram
 							parts={[

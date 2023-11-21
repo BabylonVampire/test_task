@@ -7,7 +7,7 @@ import { UsersAPI } from '../api/';
  * @param {string} sort - Порядок сортировки пользователей.
  * @returns {object} Объект, содержащий массив пользователей, объект пагинации и функции для создания, обновления и удаления пользователей.
  */
-export function useUsers({ limit, offset, sort }) {
+export function useUsers({ limit = 10, offset = 0, sort = 'name' }) {
 	const [users, setUsers] = useState([]);
 	const [pagination, setPagination] = useState({});
 

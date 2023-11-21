@@ -52,7 +52,7 @@ User.init(
 	}
 );
 
-University.hasMany(User, { as: 'users' });
-User.belongsTo(University, { as: 'university' });
+User.belongsTo(University);
+University.hasMany(User);
 
 export default User;

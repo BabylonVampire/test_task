@@ -12,7 +12,6 @@ export class UniversityService {
 	 * @throws {Error} Ошибка, если университет с таким именем уже существует
 	 */
 	async createUniversity(name) {
-		console.log(name);
 		const candidate = await University.findOne({ where: { name } });
 		if (candidate) {
 			throw new Error('Университет с таким именем уже существует');
@@ -54,13 +53,13 @@ export class UniversityService {
 	 * @returns {Promise<University>} Промис, возвращающий обновленный университет
 	 * @throws {Error} Ошибка, если университет с таким id не найден
 	 */
-	async updateUniversityById(id, email, name) {
+	async updateUniversityById(id, name) {
 		const university = await University.findByPk(id);
 		if (!university) {
 			throw new Error('Университет с таким id не найден');
 		}
 		const updatedUniversity = await University.update(
-			{ email, name },
+			{ name },
 			{ where: { id: id }, returning: true, plain: true }
 		);
 		return updatedUniversity[1];

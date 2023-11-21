@@ -15,7 +15,7 @@
 
 	/* font-families */
 	--font-family-main: monospace /*mainFamily*/;
-	--font-family-heading: regularFamily;
+	--font-family-heading: headingFamily;
 	/* font-families */
 
 	/* font-sizes */
@@ -74,8 +74,8 @@
 	src: monospace;
 }
 @font-face {
-	font-family: secondary;
-	src: url();
+	font-family: headingFamily;
+	src: url(./fonts/aqum/Aqum.ttf);
 }
 
 /* FONT FAMILIES */
