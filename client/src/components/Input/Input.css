@@ -1,0 +1,30 @@
+.input,
+.input__required {
+	background-clip: padding-box;
+	padding: 15px;
+	border: none;
+	border-radius: 10px;
+	height: 1.5lh;
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-m);
+	transition: 0.3s;
+}
+
+.input__required {
+	border: solid #f03939 2px;
+}
+
+.input__required::placeholder,
+.input::placeholder {
+	color: #212529;
+	opacity: 0.4;
+}
+
+.input__required:focus,
+.input:focus {
+	color: #212529;
+	background-color: #fff;
+	border-color: #bdbdbd;
+	outline: 0;
+	box-shadow: 0 0 6px 0px rgb(89 89 89);
+}

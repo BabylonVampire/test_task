@@ -3,6 +3,8 @@ import HeroSection from './components/HeroSection/HeroSection';
 import Layout from './components/Layout/Layout';
 import Table from './components/Table/Table';
 import { useUsers } from './hooks/';
+import Modal from './components/Modal/Modal';
+import CreateUserForm from './components/CreateUserForm/CreateUserForm';
 
 const App = () => {
 	const [userFetchParams, setUserFetchParams] = useState({

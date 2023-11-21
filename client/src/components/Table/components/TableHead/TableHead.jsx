@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { BiIdCard, BiTable } from 'react-icons/bi';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa6';
+import { FaUniversity } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp, FaUserPlus } from 'react-icons/fa6';
+import { useAppDispatch } from '../../../../store/hooks/redux';
+import { modalSlice } from '../../../../store/reducers/ModalSlice';
 import Cell from '../Cell/Cell';
 import './TableHead.css';
 
@@ -37,26 +40,48 @@ const TableHead = ({
 		table: { icon: <BiTable />, centralizeHead: false },
 	};
 
+	const dispatch = useAppDispatch();
+	const { changeModal } = modalSlice.actions;
+
 	return (
 		<div className="table-head">
 			<div className="table-head__inner-box">
-				<div className="table-head__display-variants">
-					{config.displayVariants.map((variant) => {
-						return (
-							<button
-								key={variant.key}
-								className={`table-head__display-variant-button${
-									displayVariant.key === variant.key
-										? '__active'
-										: ''
-								}`}
-								onClick={() => setDisplayVariant(variant)}
-							>
-								{displayVariantsIcons[variant.key].icon}
-							</button>
-						);
-					})}
+				<div className="table-head__settings-box">
+					<div className="table-head__add-to-db-buttons">
+						<button
+							className="table-head__add-button"
+							onClick={() => dispatch(changeModal('createUser'))}
+						>
+							<FaUserPlus />
+						</button>
+						<button
+							className="table-head__add-button"
+							onClick={() =>
+								dispatch(changeModal('createUniversity'))
+							}
+						>
+							<FaUniversity />
+						</button>
+					</div>
+					<div className="table-head__display-variants">
+						{config.displayVariants.map((variant) => {
+							return (
+								<button
+									key={variant.key}
+									className={`table-head__display-variant-button${
+										displayVariant.key === variant.key
+											? '__active'
+											: ''
+									}`}
+									onClick={() => setDisplayVariant(variant)}
+								>
+									{displayVariantsIcons[variant.key].icon}
+								</button>
+							);
+						})}
+					</div>
 				</div>
+
 				<div className="table-head__sortable-cell-box">
 					{config.columns.map((col) => {
 						return (

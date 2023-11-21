@@ -13,24 +13,52 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 10px;
+}
+
+.table-head__settings-box {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.table-head__display-variants,
+.table-head__add-to-db-buttons {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	gap: 10px;
 }
 
 .table-head__display-variants {
-	width: 100%;
-	display: flex;
 	justify-content: flex-end;
-	align-items: center;
-	flex-direction: row;
 }
 
-.table-head__display-variant-button {
+.table-head__add-to-db-buttons {
+	justify-content: flex-start;
+}
+
+.table-head__display-variant-button,
+.table-head__add-button {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
-	color: var(--color-font-secondary);
 	font-size: var(--font-size-xl);
 	line-height: 0;
 	transition: 0.3s;
+}
+
+.table-head__display-variant-button {
+	color: var(--color-font-secondary);
+}
+
+.table-head__add-button {
+	color: var(--color-font-main);
+}
+
+.table-head__add-button:hover {
+	scale: 1.05;
 }
 
 .table-head__display-variant-button__active {

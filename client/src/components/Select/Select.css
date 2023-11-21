@@ -1,0 +1,53 @@
+.select__container {
+	display: flex;
+	flex-direction: column;
+}
+
+.select__button,
+.select__button__required {
+	width: 100%;
+	border: none;
+	cursor: pointer;
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-m);
+	height: 1.5lh;
+	background-color: #fff;
+	border-radius: 20px;
+	transition: 0.3s;
+}
+
+.select__button:hover,
+.select__button__required:hover {
+	background-color: #e6e6e6;
+}
+
+.select__button__required {
+	border: solid #f03939 2px;
+}
+
+.select__list {
+	transition: 0.3s;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 20px;
+	position: relative;
+	overflow: hidden;
+	margin-block-start: 5px;
+}
+.select__item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-m);
+	cursor: pointer;
+	width: 100%;
+	transition: 0.3s;
+	height: 1.5lh;
+}
+.select__item:hover {
+	background-color: #d4d4d4;
+}
