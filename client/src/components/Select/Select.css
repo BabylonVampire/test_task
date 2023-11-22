@@ -1,6 +1,7 @@
 .select__container {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 
 .select__button,
@@ -22,19 +23,22 @@
 }
 
 .select__button__required {
-	border: solid #f03939 2px;
+	border: solid rgba(207, 43, 43, 0.4) 2px;
 }
 
 .select__list {
+	z-index: 10;
 	transition: 0.3s;
 	list-style: none;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	border-radius: 20px;
-	position: relative;
 	overflow: hidden;
 	margin-block-start: 5px;
+	position: absolute;
+	top: 0.8lh;
+	width: 100%;
 }
 .select__item {
 	display: flex;

@@ -10,14 +10,14 @@
 	transition: 0.3s;
 }
 
-.input__required {
-	border: solid #f03939 2px;
-}
-
-.input__required::placeholder,
+/* .input__required::placeholder, */
 .input::placeholder {
 	color: #212529;
 	opacity: 0.4;
+}
+
+.input__required::placeholder {
+	color: rgba(207, 43, 43, 0.4);
 }
 
 .input__required:focus,

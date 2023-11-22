@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Select.css';
 
-const Select = ({ options, onChange, required }) => {
-	const [selected, setSelected] = useState('');
+const Select = ({ options, onChange, required, defaultValue }) => {
+	const [selected, setSelected] = useState(defaultValue);
 	const [showDropdown, setShowDropdown] = useState(false);
 
 	const handleSelect = (option) => {
