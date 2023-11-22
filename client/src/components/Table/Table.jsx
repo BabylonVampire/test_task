@@ -15,20 +15,36 @@ import TableHead from './components/TableHead/TableHead';
  * @returns {JSX.Element} - элемент, который отображает данные в виде таблицы или карточек.
  */
 const Table = ({ data, config, pagination, fetchParams, setFetchParams }) => {
+	if (!fetchParams) {
+		fetchParams = {
+			offset: 0,
+			limit: 10,
+			sort: 'name',
+			universityId: undefined,
+		};
+	}
+	if (!pagination) {
+		pagination = {
+			page: 1,
+			size: 1,
+			totalCount: 1,
+			totalPages: 1,
+		};
+	}
 	const [displayVariant, setDisplayVariant] = useState(
-		config.displayVariants[0]
+		config.displayVariants[1]
 	);
 	const renderDisplayVariant = (displayVariant) => {
 		switch (displayVariant) {
 			case 'cards':
 				return <CardGrid config={config} data={data} />;
-
 			case 'table':
 				return <TableBody config={config} data={data} />;
 			default:
 				return <></>;
 		}
 	};
+
 	return (
 		<div className="table">
 			<TableHead
@@ -36,6 +52,7 @@ const Table = ({ data, config, pagination, fetchParams, setFetchParams }) => {
 				setFetchParams={setFetchParams}
 				setDisplayVariant={setDisplayVariant}
 				displayVariant={displayVariant}
+				fetchParams={fetchParams}
 			/>
 			{renderDisplayVariant(displayVariant.key)}
 			<TableFooter

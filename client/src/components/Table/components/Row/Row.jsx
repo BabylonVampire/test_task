@@ -13,7 +13,18 @@ const Row = ({ item, config }) => {
 		<div className="row">
 			<div className="row__inner-box">
 				{config.columns.map((col) => {
-					return <Cell key={col.key}>{item[col.key]}</Cell>;
+					let value = item;
+					if (col.key.includes('.')) {
+						let path = col.key.split('.');
+						for (let i of path) {
+							value = value[i];
+						}
+					}
+					return (
+						<Cell key={col.key}>
+							{col.key.includes('.') ? value : item[col.key]}
+						</Cell>
+					);
 				})}
 			</div>
 		</div>

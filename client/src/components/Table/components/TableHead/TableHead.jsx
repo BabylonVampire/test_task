@@ -1,39 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BiIdCard, BiTable } from 'react-icons/bi';
 import { FaUniversity } from 'react-icons/fa';
 import { FaChevronDown, FaChevronUp, FaUserPlus } from 'react-icons/fa6';
 import { useAppDispatch } from '../../../../store/hooks/redux';
 import { modalSlice } from '../../../../store/reducers/ModalSlice';
+import Select from '../../../Select/Select';
 import Cell from '../Cell/Cell';
 import './TableHead.css';
 
-/**
- * Компонент, который отображает заголовок таблицы с кнопками для выбора вида отображения данных и сортировки по столбцам.
- * @param {Object} config - объект, содержащий настройки для отображения данных.
- * @param {Function} setFetchParams - функция, которая устанавливает новые параметры для запроса данных с сервера.
- * @param {Function} setDisplayVariant - функция, которая устанавливает новый вид отображения данных.
- * @param {Object} displayVariant - объект, содержащий информацию о текущем виде отображения данных.
- * @returns {JSX.Element} - элемент, который отображает заголовок таблицы.
- */
 const TableHead = ({
 	config,
 	setFetchParams,
 	setDisplayVariant,
 	displayVariant,
+	fetchParams,
 }) => {
-	const [direction, setDirection] = useState(true);
-	const [sortedField, setSortingField] = useState();
-
 	const changeSelectedSort = (col, dir) => {
 		setFetchParams((prev) => ({
 			...prev,
 			sort: `${dir === false ? '-' : ''}${col}`,
 		}));
 	};
-
-	useEffect(() => {
-		changeSelectedSort(sortedField, direction);
-	}, [direction, sortedField]);
 
 	const displayVariantsIcons = {
 		cards: { icon: <BiIdCard />, centralizeHead: true },
@@ -85,35 +72,87 @@ const TableHead = ({
 				<div className="table-head__sortable-cell-box">
 					{config.columns.map((col) => {
 						return (
-							<div
-								key={col.key}
-								style={{
-									justifyContent: displayVariantsIcons[
-										displayVariant.key
-									].centralizeHead
-										? 'center'
-										: 'normal',
-								}}
-								className="table-head__sortable-cell"
-								onClick={() => {
-									setSortingField(col.key);
-									setDirection((prev) => !prev);
-								}}
-							>
-								<Cell>{col.label}</Cell>
-								<div
-									className={`table-head__sort-button${
-										col.key === sortedField
-											? '__active'
-											: ''
-									}`}
-								>
-									{!direction && col.key === sortedField ? (
-										<FaChevronUp />
-									) : (
-										<FaChevronDown />
-									)}
-								</div>
+							<div key={col.key}>
+								{!col.filter ? (
+									<div
+										key={col.key}
+										style={{
+											justifyContent:
+												displayVariantsIcons[
+													displayVariant.key
+												].centralizeHead
+													? 'center'
+													: 'normal',
+										}}
+										className="table-head__sortable-cell"
+										onClick={() => {
+											changeSelectedSort(
+												col.key,
+												fetchParams.sort.includes('-')
+											);
+										}}
+									>
+										<Cell>{col.label}</Cell>
+										<div
+											className={`table-head__sort-button${
+												col.key ===
+												fetchParams.sort.substr(
+													+fetchParams.sort.includes(
+														'-'
+													)
+												)
+													? '__active'
+													: ''
+											}`}
+										>
+											{!fetchParams.sort.includes('-') &&
+											col.key ===
+												fetchParams.sort.substr(
+													+fetchParams.sort.includes(
+														'-'
+													)
+												) ? (
+												<FaChevronUp />
+											) : (
+												<FaChevronDown />
+											)}
+										</div>
+									</div>
+								) : (
+									<div
+										style={{
+											justifyContent:
+												displayVariantsIcons[
+													displayVariant.key
+												].centralizeHead
+													? 'center'
+													: 'normal',
+										}}
+										className="table-head__filterable-cell"
+									>
+										<Cell>{col.label}</Cell>
+										<div className="table-head__filter-button__active">
+											<Select
+												options={[
+													...col.filterParams.map(
+														(prop) => prop.name
+													),
+													'Не выбрано',
+												]}
+												onChange={col.onChange}
+												defaultValue={
+													fetchParams.universityId
+														? col.filterParams.find(
+																(un) =>
+																	un.id ==
+																	fetchParams.universityId
+														  )?.name
+														: 'Не выбрано'
+												}
+											/>
+										</div>
+									</div>
+								)}
 							</div>
 						);
 					})}

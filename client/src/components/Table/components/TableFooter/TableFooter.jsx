@@ -22,7 +22,6 @@ const TableFooter = ({ pagination, fetchParams, setFetchParams }) => {
 			offset: prev.offset - fetchParams.limit,
 		}));
 	};
-
 	return (
 		<div className="table-footer">
 			<div className="table-footer__divider" />
