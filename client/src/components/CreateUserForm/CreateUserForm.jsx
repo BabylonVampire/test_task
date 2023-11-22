@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useUniversities, useUsers } from '../../hooks';
+import { useAppDispatch } from '../../store/hooks/redux';
+import { modalSlice } from '../../store/reducers/ModalSlice';
 import Input from '../Input/Input';
 import Select from '../Select/Select';
 import './CreateUserForm.css';
@@ -11,14 +13,18 @@ const CreateUserForm = () => {
 	const [email, setEmail] = useState('');
 	const [university, setUniversity] = useState('');
 
+	const dispatch = useAppDispatch();
+	const { changeModal } = modalSlice.actions;
+
 	const handleCreateUser = (e) => {
 		e.preventDefault();
-		// createUser({ name, email, universityId: '' });
-		console.log(
+		createUser({
 			name,
 			email,
-			universities.find((uni) => uni.name === university)?.id
-		);
+			universityId: universities.find((uni) => uni.name === university)
+				?.id,
+		});
+		dispatch(changeModal('none'));
 	};
 
 	return (
@@ -30,13 +36,15 @@ const CreateUserForm = () => {
 			>
 				<Input
 					onChange={(e) => setName(e.target.value)}
+					required
 					value={name}
-					placeholder="Имя пользователя"
+					placeholder="Имя"
 				/>
 				<Input
 					onChange={(e) => setEmail(e.target.value)}
+					required
 					value={email}
-					placeholder="Email пользователя"
+					placeholder="Email"
 				/>
 				{universities.length && (
 					<Select
@@ -48,7 +56,9 @@ const CreateUserForm = () => {
 				)}
 				<button
 					type="submit"
-					className="create-user-form__submit-button"
+					className={`create-user-form__submit-button${
+						!university || !email || !name ? '__disabled' : ''
+					}`}
 				>
 					Создать
 				</button>

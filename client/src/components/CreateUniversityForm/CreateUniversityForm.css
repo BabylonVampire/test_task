@@ -17,7 +17,8 @@
 	font-size: var(--font-size-m);
 }
 
-.create-university-form__submit-button {
+.create-university-form__submit-button,
+.create-university-form__submit-button__disabled {
 	width: 100%;
 	border: none;
 	cursor: pointer;
@@ -27,6 +28,11 @@
 	background-color: #fff;
 	border-radius: 20px;
 	transition: 0.3s;
+}
+
+.create-university-form__submit-button__disabled {
+	pointer-events: none;
+	filter: blur(2px) brightness(0.8);
 }
 
 .create-university-form__submit-button:hover {
